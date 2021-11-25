@@ -18,6 +18,7 @@
       <el-form-item label="确认密码" prop="ackPassword" for='ackPassword'>
         <el-input id='ackPassword' type='password' v-model="form.ackPassword"></el-input>
       </el-form-item>
+      <span class='tip'>已有账号？<router-link to='/login' class="link">去登录！</router-link></span><br>
       <el-form-item>
         <el-button type="primary" round @click="register('form')"  style="margin: 0 30px 0 0px; padding: 16px 53px;">注册</el-button>
       </el-form-item>
@@ -134,11 +135,22 @@ export default {
   box-shadow: 0 0 30px #dcdfe6;
   position: absolute;
   top: 19%;
-  left: 34%;
+  left: 37%;
 }
 
 .login-title {
   text-align: center;
   padding: 0 0 15px 30px;
+}
+
+.tip {
+  color: white;
+  position: relative;
+  left: 30px;
+  bottom: 10px;
+}
+
+.link:hover{
+  color: red;
 }
 </style>
