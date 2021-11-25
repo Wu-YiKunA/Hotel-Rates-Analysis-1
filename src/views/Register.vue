@@ -111,17 +111,21 @@ export default {
       });
     }
   },
-  // watch: {
-  //   form: {
-  //     handler(newVal){
-  //       if(newVal.ackPassword == newVal.password){
-  //         console.log('Coincidence!');
-  //       }
-  //     },
-  //     immediate: true,
-  //     deep: true
-  //   }
-  // }
+  // watch的应用: 同名、immediate、deep、handler(newVal,oldVal)、属性监控==>字符串形式!
+  watch: {
+    // 若直接监听 form 对象 + deep:true 属性 ==> 一旦form对象内的任何属性改变都会触发监听器内的 handler() ==> 性能开销较大!
+    // 优化: "字符串形式监听" ==> 不需要deep属性 + `'form.属性':{}` 
+    // 现在是只监听 form 对象的 ackPassword 属性!
+    'form.ackPassword': {
+      handler(newVal, oldVal){
+        if(newVal == this.form.password){
+          console.log('Coincidence!');
+        }
+      },
+      immediate: true,
+      // deep: true
+    }
+  }
 
 }
 </script>
