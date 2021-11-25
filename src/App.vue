@@ -25,6 +25,5 @@ export default {
   width: 100%;
   height: 100%;
   position: absolute;
-  background-image: url("http://ww1.sinaimg.cn/large/006V2BYXly1gwq7fgvx7fj31hc0s7u0x.jpg");
 }
 </style>

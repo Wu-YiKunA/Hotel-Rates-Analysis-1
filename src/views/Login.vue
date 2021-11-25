@@ -1,13 +1,13 @@
 <template>
-  <div style="width:100%; height:100%">
-    <h1 class='logo'>福州房价分析网</h1>
+  <div style="width:100%; height:100%" class='container'>
+    <h1 class='logo'>福州房价查询网</h1>
     <el-form ref="form" :model="form" label-width="80px" class="login-box" :rules="rules">
       <h2 class="login-title">欢迎登录</h2>
-      <el-form-item label="账号" prop="account" class="account">
-        <el-input placeholder="请输入用户名" v-model="form.account" class="input"></el-input>
+      <el-form-item label="账号" prop="account" for='account'>
+        <el-input id='account' placeholder="请输入用户名" v-model="form.account"></el-input>
       </el-form-item>
-      <el-form-item label="密码" prop="password" class="password">
-        <el-input type='password' placeholder="请输入密码" v-model="form.password" class="input"></el-input>
+      <el-form-item label="密码" prop="password" for='password'>
+        <el-input id='password' type='password' placeholder="请输入密码" v-model="form.password"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" round @click="login('form')"  style="margin: 0 30px 0 -20px;">登录</el-button>
@@ -27,19 +27,34 @@ export default {
         password: "",
       },
       rules: {
+          account: [
+            { required: true, message: '请输入用户名', trigger:'change'}
+          ],
           password: [
+            { required: true, message: '请输入密码', trigger: 'change' },
             { min: 6, max: 16, message: '密码长度在 6 到 16 个字符', trigger: 'blur' }
           ]
         }
     };
   },
   methods: {
-    login(formName) {
+    login(formName) {``
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.$router.push('/main')
+          // 管理员
+          if(this.form.account === "admin" && this.form.password === "123456") {
+            this.$message.success('成功登录后台管理系统~')
+            this.$router.push('/admin/main')
+          }
+          // 客户 
+          else if(this.form.account === "user" && this.form.password === "123456") {
+            this.$message.success('成功登录福州房价查询系统~')
+            this.$router.push('/user/main')
+          } else {
+            this.$message.error('用户名或密码错误..');
+          }
         } else {
-          this.$message.error('用户名或密码错误..');
+          this.$message.error('请检查你的账号/密码格式是否正确..');
           return false;
         }
       });
@@ -52,6 +67,11 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  background-image: url("http://ww1.sinaimg.cn/large/006V2BYXly1gwr4x6wbv8j31hc0hswqw.jpg");
+  background-repeat: round;
+}
+
 .logo{
   float: left;
   padding-left: 50px;
@@ -60,12 +80,6 @@ export default {
   background-size: 40px;
   background-position: left;
   background-repeat: no-repeat;
-}
-
-.FuZhou > img{
-  position: absolute;
-  top: 20px;
-  left: 15px;
 }
 
 .login-box {
