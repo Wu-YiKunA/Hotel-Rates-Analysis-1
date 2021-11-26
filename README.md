@@ -1,6 +1,6 @@
-# vue-element
+# Room-Rates-Visualization-System
 
-> A Vue.js project
+> 福州房价可视化分析系统
 
 ## Build Setup
 
