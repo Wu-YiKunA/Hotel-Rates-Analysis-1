@@ -24,15 +24,18 @@ export default {
       form: {
         account: "",
         password: "",
+      }, rules: {
+
       }
     };
+
   },
   methods: {
     login(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           // 管理员
-          if (this.form.account === "admin" && this.form.password === "12345678") {
+          if (this.form.account === "" && this.form.password === "") {
             this.$message.success('成功登录福州房价查询系统, 欢迎你, Admin ~')
             this.$router.push('/main')
           }

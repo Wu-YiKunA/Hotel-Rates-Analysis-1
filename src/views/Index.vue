@@ -1,6 +1,6 @@
 <template>
   <div style="width: 100%; height: 100%" class="container">
-    <h1 class="logo">福州房价查询网</h1>
+    <h1 class="logo">福州房价可视化分析系统</h1>
     <router-view></router-view>
   </div>
 </template>
